@@ -28,7 +28,6 @@ def get_approved_package(model_package_group_name):
             MaxResults=100,
         )
         approved_packages = response["ModelPackageSummaryList"]
-        logger.error(f'!!!!!!response: {response}')
 
         # Fetch more packages if none returned with continuation token
         while len(approved_packages) == 0 and "NextToken" in response:
@@ -43,12 +42,12 @@ def get_approved_package(model_package_group_name):
             approved_packages.extend(response["ModelPackageSummaryList"])
 
         # Return error if no packages found
-        if len(approved_packages) == 0:
-            error_message = (
-                f"No approved ModelPackage found for ModelPackageGroup: {model_package_group_name}"
-            )
-            logger.error(error_message)
-            raise Exception(error_message)
+        #if len(approved_packages) == 0:
+        #    error_message = (
+        #        f"No approved ModelPackage found for ModelPackageGroup: {model_package_group_name}"
+        #    )
+        #    logger.error(error_message)
+        #    raise Exception(error_message)
 
         # Return the pmodel package arn
         model_package_arn = approved_packages[0]["ModelPackageArn"]
