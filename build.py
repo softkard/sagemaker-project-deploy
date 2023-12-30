@@ -28,7 +28,7 @@ def get_approved_package(model_package_group_name):
             MaxResults=100,
         )
         approved_packages = response["ModelPackageSummaryList"]
-        logger.error(f'!!!!!!reponse: {reponse}')
+        logger.error(f'!!!!!!response: {response}')
 
         # Fetch more packages if none returned with continuation token
         while len(approved_packages) == 0 and "NextToken" in response:
